@@ -1,5 +1,6 @@
 #include "accumulate.h"
 #include "bounds.h"
+#include "sort.h"
 
 #include <vector>
 #include <iterator>
@@ -22,6 +23,9 @@ int main()	{
 
 	print_line_break();
 	bounds_demo();
+
+	print_line_break();
+	sort_demo();
 
 	print_line_break();
 	return 0;
