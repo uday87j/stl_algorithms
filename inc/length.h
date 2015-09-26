@@ -9,11 +9,12 @@
 
 namespace ns_stl	{
 
-    // T should be of integral type
     template<typename T>
     class length_t   {
 
         public:
+
+        typedef T this_type;
 
         length_t(const T len = T())
         : m_len(len)    {}
@@ -46,6 +47,11 @@ namespace ns_stl	{
         return os;
     }
 
+    template<typename T>
+    bool operator < (const length_t<T>& l1, const length_t<T>& l2)    {
+        return l1.len() < l2.len();
+    }
+
     //TODO: Get this compiling
     //// unsigned long long int is the only allowed integral type for "" operator
     //// _m refers to SI unit of length: metre
@@ -60,6 +66,8 @@ namespace ns_stl	{
     class rectangle_t   {
 
         public:
+
+        typedef T this_type;
 
         rectangle_t(const length_t<T>& h = length_t<T>(),const length_t<T>& w = length_t<T>())
         : m_height(h),
@@ -100,8 +108,13 @@ namespace ns_stl	{
     }
 
     template<typename T>
-    bool operator < (const rectangle_t<T>& r1, const rectangle_t<T>& r2)    {
-        return r1.height().len() < r2.height().len();
+    bool compare_rect_height (const rectangle_t<T>& r1, const rectangle_t<T>& r2)    {
+        return r1.height() < r2.height();
+    }
+
+    template<typename T>
+    bool compare_rect_width (const rectangle_t<T>& r1, const rectangle_t<T>& r2)    {
+        return r1.width() < r2.width();
     }
 
     typedef rectangle_t<std::uint32_t> rect_t;
