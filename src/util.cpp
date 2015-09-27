@@ -7,8 +7,8 @@ using namespace std;
 
 namespace ns_stl	{
 	
-	std::vector<int> create_random_int_vector(const std::uint32_t size)	{
-    	std::uniform_int_distribution<int> dist(1, 100);
+	std::vector<int> create_random_int_vector(const std::uint32_t size, const int range_min, const int range_max)	{
+    	std::uniform_int_distribution<int> dist(range_min, range_max);
 		std::random_device rd;
 		std::vector<int> ivec(size);
 		for(auto& i : ivec)	{
@@ -27,5 +27,11 @@ namespace ns_stl	{
         	i	= rect_t(h_dist(rd), w_dist(rd));
 		}
 		return rectangles;
+	}
+
+	int create_random_num(const int range_min, const int range_max)	{
+    	std::uniform_int_distribution<int> dist(range_min, range_max);
+		std::random_device rd;
+		return dist(rd);
 	}
 }
