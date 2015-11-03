@@ -1,6 +1,7 @@
 #include "util.h"
 
 #include <iostream>
+#include <algorithm>
 #include <random>
 
 using namespace std;
@@ -11,9 +12,10 @@ namespace ns_stl	{
     	std::uniform_int_distribution<int> dist(range_min, range_max);
 		std::random_device rd;
 		std::vector<int> ivec(size);
-		for(auto& i : ivec)	{
-			i	= dist(rd);
-		}
+		//for(auto& i : ivec)	{
+		//	i	= dist(rd);
+		//}
+        std::generate(begin(ivec), end(ivec), [&]()  { return dist(rd); });
 		return ivec;
 	}
 
